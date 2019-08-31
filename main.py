@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from cartesian_product  import CartesianProduct
+from lib.cartesian_product import CartesianProduct
 
 a = ["a","b"]
 b = ["1","2","3"]
@@ -11,10 +11,11 @@ f = ["!", "#", "+"]
 g = ["91823", "kjk3", "lljk34"]
 h = [333, 444, 536, 921, 5150, 512350]
 
-matrix  = [a, b, c, d, e, f, g, h]
-result  = []
+if __name__ == '__main__':
+    matrix  = [a, b, c, d, e, f, g, h]
+    result  = []
 
-p = CartesianProduct()
-result = p.execute(matrix,result)
-#p.show(result)
-p.to_csv(result)
+    p = CartesianProduct()
+    result = p.execute(matrix,result)
+    #p.show(result)
+    p.to_csv(result)
