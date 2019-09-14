@@ -1,7 +1,13 @@
 # coding: utf-8
 
+from lib.logger import Logger
+
 class CartesianProduct:
-    def extract(self,val,row):
+    def __init__(self):
+        self.log = Logger(__name__)
+
+    def extract(self, val, row):
+        self.log.info("extract start")
         if isinstance(val, list):
             for v in val:
                 row.append(v)
@@ -9,30 +15,30 @@ class CartesianProduct:
             row.append(val)
 
     def combi(self,x, y, result):
-        #print("combi before",x,y,result)
+        self.log.info("combi start")
         row = []
         for i in x:
             for j in y:
                 self.extract(i,row)
                 row.append(j)
-                #print("row", row)
+                self.log.info("row append val = ", j)
                 result.append(row)
                 row=[]
-                #print("result", result)
+                # self.log.info("combi result = ", result)
     
     def execute(self,matrix,result):
+        self.log.info("execute start")
         for idx, x in enumerate(matrix):
             if (idx == 0):
-                #print("0 times")
+                self.log.info("0 times")
                 self.combi(matrix[idx], matrix[idx+1], result)
-                #print("result=",result)
+                # self.log.info("execute result = ", result)
             elif (idx < len(matrix)-1):
-                #print("{0} times", idx)
+                self.log.info("times: ", idx)
                 tmp=[]
                 self.combi(result, matrix[idx+1], tmp)
-                #print("tmp=",tmp)
                 result = tmp
-                #print("exec() result=",result)
+                # self.log.info("execute result = ", result)
     
         return result
         #for r in result:
